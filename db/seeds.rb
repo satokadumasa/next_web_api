@@ -5,24 +5,24 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# User
-# User.create(email: 'webmaster@example.com', password: 'password')
-# User.create(email: 'operator@example.com', password: 'password')
-# User.create(email: 'user01@example.com', password: 'password')
-# User.create(email: 'user02@example.com', password: 'password')
-# User.create(email: 'user03@example.com', password: 'password')
+User
+User.create(email: 'webmaster@example.com', password: 'password')
+User.create(email: 'operator@example.com', password: 'password')
+User.create(email: 'user01@example.com', password: 'password')
+User.create(email: 'user02@example.com', password: 'password')
+User.create(email: 'user03@example.com', password: 'password')
 
-# # Role
-# Role.create(name: 'admin')
-# Role.create(name: 'operator')
-# Role.create(name: 'user')
+# Role
+Role.create(name: 'admin')
+Role.create(name: 'operator')
+Role.create(name: 'user')
 
-# # User-Role
-# UserRole.create(user_id:1, role_id:1)
-# UserRole.create(user_id:2, role_id:2)
-# UserRole.create(user_id:3, role_id:3)
-# UserRole.create(user_id:4, role_id:3)
-# UserRole.create(user_id:5, role_id:3)
+# User-Role
+UserRole.create(user_id:1, role_id:1)
+UserRole.create(user_id:2, role_id:2)
+UserRole.create(user_id:3, role_id:3)
+UserRole.create(user_id:4, role_id:3)
+UserRole.create(user_id:5, role_id:3)
 
 #Board
 Board.create(user_id: 1,title: 'BOARD001', detail: "DETAIL01DETAIL01DETAIL01DETAIL01DETAIL01DETAIL\nDETAIL01DETAIL01DETAIL01DETAIL01DETAIL01DETAIL01DETAIL01DETAIL01\n")
