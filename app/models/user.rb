@@ -13,4 +13,6 @@ class User < ActiveRecord::Base
   has_many :roles, through: :user_roles
   has_many :boards
   has_many :board_comments, through: :boards
+
+  # validates :nickname, uniqueness: true, presence: true
 end
