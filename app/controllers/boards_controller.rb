@@ -12,7 +12,8 @@ class BoardsController < ApplicationController
   # GET /boards/1
   def show
     # @board.detail = @board.detail
-    render json: @board
+    @board_comments = @board.board_comments
+    render json: {board: @board, board_comments: @board_comments}
   end
 
   # POST /boards

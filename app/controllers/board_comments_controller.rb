@@ -3,7 +3,7 @@ class BoardCommentsController < ApplicationController
 
   # GET /board_comments
   def index
-    @board_comments = BoardComment.where({board_id: paraams[:board_id]).page(params[:page]).per(params[:per]).all
+    @board_comments = BoardComment.where(board_id: paraams[:board_id]).all.page(params[:page]).per(params[:per])
     @board = @board_comments[1]
     render json: @board_comments
   end
@@ -16,6 +16,7 @@ class BoardCommentsController < ApplicationController
   # POST /board_comments
   def create
     @board_comment = BoardComment.new(board_comment_params)
+    @board_comment.user_id = current_user.id
 
     if @board_comment.save
       render json: @board_comment, status: :created, location: @board_comment
