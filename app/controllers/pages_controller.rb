@@ -17,7 +17,9 @@ class PagesController < ApplicationController
 
   # POST /pages
   def create
+    pp page_params
     @page = Page.new(page_params)
+    @page.user_id = current_user.id
 
     if @page.save
       render json: @page, status: :created, location: @page

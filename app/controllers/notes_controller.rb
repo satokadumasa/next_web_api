@@ -11,8 +11,9 @@ class NotesController < ApplicationController
 
   # GET /notes/1
   def show
-    
-    render json: @note
+    pages = Page.eager_load(:user).where(note_id: params[:id]).all
+    @pages = pages.as_json(:include => :user)
+    render json: {note: @note, pages: @pages}
   end
 
   # POST /notes
@@ -44,7 +45,8 @@ class NotesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_note
-      @note = Note.find(params[:id])
+      note = Note.eager_load(:user).find(params[:id])
+      @note = note.as_json(:include => :user)
     end
 
     # Only allow a list of trusted parameters through.

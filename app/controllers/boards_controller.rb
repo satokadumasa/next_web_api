@@ -11,8 +11,8 @@ class BoardsController < ApplicationController
 
   # GET /boards/1
   def show
-    # @board.detail = @board.detail
-    @board_comments = @board.board_comments
+    board_comments = BoardComment.eager_load(:user).where(board_id: params[:id]).all
+    @board_comments = board_comments.as_json(:include => :user)
     render json: {board: @board, board_comments: @board_comments}
   end
 
@@ -30,6 +30,7 @@ class BoardsController < ApplicationController
 
   # PATCH/PUT /boards/1
   def update
+    @board = Board.eager_load(:user, {board_comments: :user}).find(params[:id])
     if @board.update(board_params)
       render json: @board
     else
@@ -39,13 +40,15 @@ class BoardsController < ApplicationController
 
   # DELETE /boards/1
   def destroy
+    @board = Board.find(params[:id])
     @board.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_board
-      @board = Board.find(params[:id])
+      board = Board.eager_load(:user).find(params[:id])
+      @board = board.as_json(:include => :user)
     end
 
     # Only allow a list of trusted parameters through.
