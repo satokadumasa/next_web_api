@@ -11,6 +11,7 @@ class BoardsController < ApplicationController
 
   # GET /boards/1
   def show
+    pp params.inspect
     board_comments = BoardComment.eager_load(:user).where(board_id: params[:id]).all
     @board_comments = board_comments.as_json(:include => :user)
     render json: {board: @board, board_comments: @board_comments}
