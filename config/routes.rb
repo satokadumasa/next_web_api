@@ -19,18 +19,4 @@ Rails.application.routes.draw do
     put '/account' => 'devise_token_auth/registrations#create'
     delete '/account' => 'devise_token_auth/registrations#destroy'
   end
-  # namespace :api, format: "json" do
-  #   namespace :v1 do
-  #     mount_devise_token_auth_for "User", at: "auth", controllers: {
-  #       registrations: "devise_token_auth/registrations"
-  #       # sessions: "devise_token_auth/sessions"
-  #     }
-  #   end
-  # end
-  # mount_devise_token_auth_for 'User', at: 'auth', controllers: {
-  #   registrations: 'auth/registrations'
-  # }
-  # mount_devise_token_auth_for 'User', at: 'auth', controllers: {
-  #   sessions: 'custom/sessions',
-  # }
 end

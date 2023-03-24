@@ -47,22 +47,7 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
-  # Highlight code that triggered database queries in logs.
-  # config.active_record.verbose_query_logs = true
-  # config.action_mailer.default_url_options = {  host: 'weed_front.example.com', port: 80 }
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   :enable_starttls_auto => true,
-  #   :address => 'smtp.gmail.com',
-  #   :port => 465,
-  #   :domain => 'september-rain.com',
-  #   :authentication => :login,
-  #   # メールアドレス(参照している)
-  #   :user_name => Rails.application.credentials.gmail[:mail_address],
-  #   # アプリパスワード(参照している)
-  #   :password => Rails.application.credentials.gmail[:app_password]
-  # }
-  config.action_mailer.default_url_options = { host: ENV['WEED_BASE_URL'] }
+  config.action_mailer.default_url_options = { host: ENV['WEED_COMFIRM_BASE_URL'] }
 
   # Mailer
   config.action_mailer.raise_delivery_errors = true
@@ -79,12 +64,6 @@ Rails.application.configure do
     :authentication => :plain,
     :enable_starttls_auto => true
   }
-  
-  # Raises error for missing translations.
-  # config.i18n.raise_on_missing_translations = true
-
-  # Annotate rendered view with file names.
-  # config.action_view.annotate_rendered_view_with_filenames = true
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.

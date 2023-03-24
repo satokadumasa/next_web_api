@@ -42,6 +42,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # 認証関連
 gem 'devise'
 gem 'devise_token_auth'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 # CORS設定
 gem 'rack-cors'
