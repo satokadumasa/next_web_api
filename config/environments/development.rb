@@ -48,19 +48,36 @@ Rails.application.configure do
   config.active_record.migration_error = :page_load
 
   # Highlight code that triggered database queries in logs.
-  config.active_record.verbose_query_logs = true
-  config.action_mailer.default_url_options = {  host: 'weed_front.example.com', port: 80 }
+  # config.active_record.verbose_query_logs = true
+  # config.action_mailer.default_url_options = {  host: 'weed_front.example.com', port: 80 }
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :enable_starttls_auto => true,
+  #   :address => 'smtp.gmail.com',
+  #   :port => 465,
+  #   :domain => 'september-rain.com',
+  #   :authentication => :login,
+  #   # メールアドレス(参照している)
+  #   :user_name => Rails.application.credentials.gmail[:mail_address],
+  #   # アプリパスワード(参照している)
+  #   :password => Rails.application.credentials.gmail[:app_password]
+  # }
+  config.action_mailer.default_url_options = { host: ENV['WEED_BASE_URL'] }
+
+  # Mailer
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :enable_starttls_auto => true,
-    :address => 'smtp.gmail.com',
-    :port => 465,
-    :domain => 'september-rain.com',
-    :authentication => :login,
+    :address => "smtp.gmail.com",
+    :port => 587,
     # メールアドレス(参照している)
     :user_name => Rails.application.credentials.gmail[:mail_address],
     # アプリパスワード(参照している)
-    :password => Rails.application.credentials.gmail[:app_password]
+    :password => Rails.application.credentials.gmail[:app_password],
+    # :user_name => Rails.application.credentials.google[:mail],
+    # :password => Rails.application.credentials.google[:password],
+    :authentication => :plain,
+    :enable_starttls_auto => true
   }
   
   # Raises error for missing translations.

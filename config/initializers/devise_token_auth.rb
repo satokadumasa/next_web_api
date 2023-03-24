@@ -41,7 +41,7 @@ DeviseTokenAuth.setup do |config|
   # By default we will use callbacks for single omniauth.
   # It depends on fields like email, provider and uid.
   # config.default_callbacks = true
-
+  config.default_callbacks = false
   # Makes it possible to change the headers names
   config.headers_names = {:'access-token' => 'access-token',
                          :'client' => 'client',
@@ -58,4 +58,5 @@ DeviseTokenAuth.setup do |config|
   # devise confirmable module. If you want to use devise confirmable module and
   # send email, set it to true. (This is a setting for compatibility)
   # config.send_confirmation_email = true
+  config.default_confirm_success_url = "http://weed_front.example.com/auth/signin"
 end
