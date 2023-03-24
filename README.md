@@ -1,24 +1,30 @@
 # README
+■ deploy api
+```bash
+$> git clone https://github.com/satokadumasa/next_web_api.git
+$> cd next_web_api
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# edit your environment variable.
+$> cp example.env .env
+$> vi .env
 
-Things you may want to cover:
+$> bundle install
+$> bundle exec rails db:create
+$> bundle exec rails db:migrate
+$> bundle exev rails s
+```
 
-* Ruby version
+■ edit rails credentials:edit
+```bash
+$> EDITOR=vi rails credentials:edit
 
-* System dependencies
+# aws:
+#   access_key_id: 123
+#   secret_access_key: 345
+gmail:
+  mail_address: (your gmail account)
+  app_password: (your gmail application password)
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Used as the base secret for all MessageVerifiers in Rails, including the one protecting cookies.
+secret_key_base: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
