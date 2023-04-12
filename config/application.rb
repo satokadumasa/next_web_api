@@ -38,5 +38,6 @@ module WeedApi
     config.api_only = true
 
     config.autoload_paths << "#{Rails.root}/lib"
+    config.action_cable.mount_path = "/cable"
   end
 end

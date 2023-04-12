@@ -19,4 +19,6 @@ Rails.application.routes.draw do
     put '/account' => 'devise_token_auth/registrations#create'
     delete '/account' => 'devise_token_auth/registrations#destroy'
   end
+  # WebSocket
+  get 'chats/show'
 end
