@@ -57,3 +57,5 @@ gem 'dotenv-rails'
 gem 'kaminari'
 
 gem 'dotenv-rails'
+
+gem 'sd_notify'

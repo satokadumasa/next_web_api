@@ -41,6 +41,7 @@ Rails.application.configure do
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
 
+  config.hosts << "api.september-rain.com"
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
   config.action_cable.allowed_request_origins = [ENV['WEED_API_ORIGIN_URL1']]
@@ -73,4 +74,19 @@ Rails.application.configure do
     # アプリパスワード(参照している)
     :password => Rails.application.credentials.gmail[:app_password]
   }
+  config.hosts << "weed_api.example.com"
+  config.hosts << "api.september-rain.com"
+  config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      # origins 'http://localhost:3001'
+      # origins 'http://www.september-rain.com:80'
+      origins ENV['WEED_API_ORIGIN_URL1']
+      resource '*',
+               headers: :any,
+               expose: ["access-token", "expiry", "token-type", "uid", "client"],
+               methods: %i[get post put patch delete options head],
+               credentials: true
+    end
+  end
+  config.action_cable.url = "wss://api.september-rain.com/cable"
 end
