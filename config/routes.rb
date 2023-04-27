@@ -20,5 +20,5 @@ Rails.application.routes.draw do
     delete '/account' => 'devise_token_auth/registrations#destroy'
   end
   # WebSocket
-  get 'chats/show'
+  mount ActionCable.server => '/cable'
 end

@@ -47,6 +47,6 @@ class BoardCommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def board_comment_params
-      params.require(:board_comment).permit(:user_id, :board_id, :title, :detail)
+      params.permit(:board_id, :title, :detail)
     end
 end

@@ -45,11 +45,13 @@ class PagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      @page = Page.find(params[:id])
+      # @page = Page.find(params[:id])
+      page = Page.eager_load(:user).find(params[:id])
+      @page = page.as_json(:include => :user)
     end
 
     # Only allow a list of trusted parameters through.
     def page_params
-      params.require(:page).permit(:user_id, :note_id, :title, :overview, :detail)
+      params.permit(:note_id, :title, :overview, :detail)
     end
 end

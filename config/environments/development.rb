@@ -70,14 +70,14 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # Uncomment if you wish to allow Action Cable access from any origin.
+  config.action_cable.allowed_request_origins = [ENV['WEED_API_ORIGIN_URL1']]
   config.action_cable.disable_request_forgery_protection = true
   config.hosts << "weed_api.example.com"
   config.hosts << "api.september-rain.com"
   config.middleware.insert_before 0, Rack::Cors do
     allow do
-      # origins 'http://localhost:3001'
-      # origins 'http://www.september-rain.com:80'
       origins ENV['WEED_API_ORIGIN_URL1']
+      # origins '*'
       resource '*',
                headers: :any,
                expose: ["access-token", "expiry", "token-type", "uid", "client"],
@@ -85,5 +85,5 @@ Rails.application.configure do
                credentials: true
     end
   end
-  config.action_cable.url = "wss://weed_api.example.com/cable"
+  config.action_cable.url = "ws://weed_api.example.com/cable"
 end
