@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_27_044213) do
+ActiveRecord::Schema.define(version: 2023_05_06_094637) do
 
   create_table "board_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 2023_03_27_044213) do
     t.text "detail"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.timestamp "comment_added_at"
+    t.index ["comment_added_at"], name: "index_boards_on_comment_added_at"
     t.index ["title"], name: "index_boards_on_title"
     t.index ["user_id"], name: "index_boards_on_user_id"
   end
@@ -48,6 +50,8 @@ ActiveRecord::Schema.define(version: 2023_03_27_044213) do
     t.text "detail"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.timestamp "page_added_at"
+    t.index ["page_added_at"], name: "index_notes_on_page_added_at"
     t.index ["title"], name: "index_notes_on_title"
     t.index ["user_id"], name: "index_notes_on_user_id"
   end

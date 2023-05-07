@@ -17,12 +17,17 @@ class PagesController < ApplicationController
 
   # POST /pages
   def create
-    pp page_params
     @page = Page.new(page_params)
     @page.user_id = current_user.id
 
     if @page.save
-      render json: @page, status: :created, location: @page
+      note = Note.find(page_params[:note_id])
+      note.page_added_at = Time.now
+      if note.save
+        render json: @page, status: :created, location: @page
+      else
+        render json: @page.errors, status: :unprocessable_entity
+      end
     else
       render json: @page.errors, status: :unprocessable_entity
     end

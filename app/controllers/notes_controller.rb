@@ -19,6 +19,7 @@ class NotesController < ApplicationController
   # POST /notes
   def create
     @note = Note.new(note_params)
+    @note.page_added_at = Time.now
     @note.user_id = current_user.id
 
     if @note.save

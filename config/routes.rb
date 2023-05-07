@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/index'
   resources :page_comments
   resources :board_comments
   resources :boards

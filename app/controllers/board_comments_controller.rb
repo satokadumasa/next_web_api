@@ -19,7 +19,13 @@ class BoardCommentsController < ApplicationController
     @board_comment.user_id = current_user.id
 
     if @board_comment.save
-      render json: @board_comment, status: :created, location: @board_comment
+      board = Board.find(board_comment_params[:board_id])
+      board.comment_added_at = Time.now
+      if board.save
+        render json: @board_comment, status: :created, location: @board_comment
+      else
+        render json: @board_comment.errors, status: :unprocessable_entity
+      end
     else
       render json: @board_comment.errors, status: :unprocessable_entity
     end

@@ -19,6 +19,7 @@ class BoardsController < ApplicationController
   # POST /boards
   def create
     @board = Board.new(board_params)
+    @board.comment_added_at = Time.now
     @board.user_id = current_user.id
 
     if @board.save
