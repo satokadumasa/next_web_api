@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :roles, through: :user_roles
   has_many :boards
   has_many :board_comments, through: :boards
+  has_many :bookmark_boards, through: :boards
+  has_many :bookmark_notes, through: :notes
 
   # validates :nickname, uniqueness: true, presence: true
 end

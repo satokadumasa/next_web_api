@@ -35,7 +35,40 @@ module WeedApi
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
+    # config.middleware.insert_before 0, Rack::Cors do
+    #   allow do
+    #     origins ENV['WEED_API_ORIGIN_URL1']
+    #     # origins '*'
+    #     resource '*',
+    #              headers: :any,
+    #              expose: ["access-token", "expiry", "token-type", "uid", "client"],
+    #              methods: %i[get post put patch delete options head],
+    #              credentials: true
+    #   end
+    # end
+  
+    # config.api_only = true
     config.api_only = true
+    # config.middleware.insert_before 0, Rack::Cors do
+    #   allow do
+    #     origins ENV['WEED_API_ORIGIN_URL1']
+    #     # origins '*'
+    #     resource '*',
+    #              :headers => :any,
+    #              :expose => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+    #              :methods => [:get, :post, :options, :delete, :put]
+    #   end
+    # end
+    # config.generators do |g|
+    #   g.test_framework :rspec,
+    #                    fixtures: true,
+    #                    view_specs: false,
+    #                    helper_specs: false,
+    #                    routing_specs: false,
+    #                    controller_specs: true,
+    #                    request_specs: true
+    #   g.fixture_replacement :factory_bot, dir: 'spec/factories'
+    # end
 
     config.autoload_paths << "#{Rails.root}/lib"
     config.action_cable.mount_path = "/cable"
